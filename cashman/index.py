@@ -1,10 +1,12 @@
 from flask import Flask, jsonify, request
+from mangum import Mangum
 
 from cashman.model.expense import Expense, ExpenseSchema
 from cashman.model.income import Income, IncomeSchema
 from cashman.model.transaction_type import TransactionType
 
 app = Flask(__name__)
+handler = Mangum(app)
 
 transactions = [
     Income('Salary', 5000),
