@@ -34,7 +34,7 @@ pip install marshmallow
 if [ ! -d "cashman" ]; then
   echo 'Error: cashman directory does not exist.' >&2
   # Repository URL
-  REPO_URL="https://github.com/auth0-blog/flask-restful-apis.git"
+  REPO_URL="https://github.com/erimyr/serverless-flask-restful-apis.git"
   # Branch to checkout, adjust as needed
   BRANCH="master"
   # Directory you want to checkout from the repository
