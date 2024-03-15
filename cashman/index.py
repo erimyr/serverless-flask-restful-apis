@@ -1,5 +1,7 @@
 from flask import Flask, jsonify, request
 from mangum import Mangum
+import hashlib
+import os
 
 from cashman.model.expense import Expense, ExpenseSchema
 from cashman.model.income import Income, IncomeSchema
@@ -18,6 +20,13 @@ transactions = [
 
 @app.route('/incomes')
 def get_incomes():
+    data_to_hash = os.urandom(1024)
+
+    for _ in range(10000):
+        hash_object = hashlib.sha256(data_to_hash)
+        hex_dig = hash_object.hexdigest()
+        
+        data_to_hash = hex_dig.encode()
     schema = IncomeSchema(many=True)
     incomes = schema.dump(
         filter(lambda t: t.type == TransactionType.INCOME, transactions)
