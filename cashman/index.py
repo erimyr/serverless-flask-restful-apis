@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from mangum import Mangum
+# from mangum import Mangum
 import hashlib
 import os
 
@@ -8,7 +8,7 @@ from cashman.model.income import Income, IncomeSchema
 from cashman.model.transaction_type import TransactionType
 
 app = Flask(__name__)
-handler = Mangum(app)
+# handler = Mangum(app)
 
 transactions = [
     Income('Salary', 5000),
@@ -27,6 +27,8 @@ def get_incomes():
         hex_dig = hash_object.hexdigest()
         
         data_to_hash = hex_dig.encode()
+        print("")
+
     schema = IncomeSchema(many=True)
     incomes = schema.dump(
         filter(lambda t: t.type == TransactionType.INCOME, transactions)
